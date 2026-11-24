@@ -47,7 +47,7 @@ p{text-wrap:pretty}
 .nav-cta{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:600;padding:0 20px;border-radius:999px;background:var(--ink);color:#000;transition:background-color .2s}
 .nav-cta:hover{background:var(--ice-hover)}
 
-.scrolly{position:relative;height:720vh}
+.scrolly{position:relative;height:460vh}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-stopped{overflow:clip}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
@@ -166,7 +166,7 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:16px;pa
     <div class="shade" aria-hidden="true"></div>
     <div class="loader" id="loader" aria-hidden="true">Cargando 0%</div>
 
-    <div class="layer intro" data-in="-1" data-out="0.085">
+    <div class="layer intro" data-in="-1" data-out="0.04">
       <h1>Míralo por dentro.</h1>
       <p>Casio de acero con esfera azul hielo, bisel estriado y cuarzo japonés.</p>
       <div class="hint" aria-hidden="true">Desliza para abrirlo
@@ -174,7 +174,7 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:16px;pa
       </div>
     </div>
 
-    <div class="layer note" data-in="0.16" data-out="0.32">
+    <div class="layer note" data-in="0.12" data-out="0.30">
       <h2>Bisel estriado</h2>
       <p>El bisel de acero con estrías finas enmarca la esfera, como en los clásicos de vestir.</p>
     </div>
@@ -184,17 +184,17 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:16px;pa
       <p>Acabado rayos de sol que pasa de celeste a plata según la luz. Fecha a las 3.</p>
     </div>
 
-    <div class="layer note" data-in="0.56" data-out="0.70">
+    <div class="layer note" data-in="0.58" data-out="0.71">
       <h2>Cuarzo japonés</h2>
       <p>Máquina de cuarzo a pila. Precisa, sin cuerda y sin ajustes diarios.</p>
     </div>
 
-    <div class="layer note" data-in="0.74" data-out="0.86">
+    <div class="layer note" data-in="0.76" data-out="0.87">
       <h2>Acero inoxidable</h2>
       <p>Caja y correa de acero. Resistente al agua 50 m: lluvia, salpicaduras y lavado de manos.</p>
     </div>
 
-    <div class="layer outro" data-in="0.9" data-out="2">
+    <div class="layer outro" data-in="0.93" data-out="2">
       <h2>Todo en su lugar.</h2>
       <p>Casio Clásico Azul Hielo.</p>
       <div class="price">$34.990</div>
@@ -276,15 +276,15 @@ const CONFIG = {
   frames: 192,
   dir: matchMedia("(max-width: 860px)").matches ? "frames-m" : "frames",
   whatsapp: "",
-  holdStart: 0.08,
-  holdEnd: 0.88
+  holdStart: 0.03,
+  holdEnd: 0.9
 };
 
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 let gated = false, lastWheel = 0;
 const lenis = !reduceMotion && window.Lenis ? new Lenis({
   lerp: 0.085,
-  wheelMultiplier: 0.8,
+  wheelMultiplier: 1,
   anchors: true,
   virtualScroll(d) {
     if (d.event.type !== "wheel") return true;
