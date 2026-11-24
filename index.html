@@ -82,7 +82,12 @@ canvas{position:absolute;inset:0;width:100%;height:100%;transition:opacity .25s 
 html.loading{overflow:hidden}
 .splash{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#000;transition:opacity .7s var(--ease),visibility 0s linear .7s}
 .splash.done{opacity:0;visibility:hidden}
-.splash-inner{display:flex;flex-direction:column;align-items:center;gap:28px}
+.splash::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+.splash-inner{display:flex;flex-direction:column;align-items:center;gap:28px;animation:float 3.6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.splash-load{position:absolute;right:clamp(24px,6vw,88px);bottom:clamp(28px,8vh,80px);display:flex;align-items:center;gap:16px;color:#c9d6de;font-size:14px;letter-spacing:.02em}
+.splash-load span{min-width:5.2em;transition:opacity .2s}
+.splash-load canvas{position:static;inset:auto;width:72px;height:72px;flex:none;transition:none}
 .wordmark{opacity:0;transition:opacity .5s var(--ease);font-size:clamp(64px,11vw,148px);font-weight:600;letter-spacing:-.05em;line-height:1;color:var(--ink)}
 .fonts-ready .wordmark{opacity:1}
 .wordmark .b{color:var(--ice-strong)}
@@ -149,6 +154,7 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:16px;pa
 }
 @media (prefers-reduced-motion:reduce){
   .splash{transition:none}
+  .splash-inner{animation:none}
   .hint svg{animation:none}
   .gallery-main img{transition:opacity .3s}
   .thumbs button::after{display:none}
@@ -163,6 +169,7 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:16px;pa
     <div class="wordmark" aria-hidden="true">om<span class="b">m</span><span class="i">i</span>t</div>
     <div class="splash-bar" aria-hidden="true"><b id="splash-bar"></b></div>
   </div>
+  <div class="splash-load" aria-hidden="true"><span id="splash-txt">Cargando</span><canvas id="splash-ring" width="144" height="144"></canvas></div>
 </div>
 
 <a class="skip" href="#producto">Saltar al producto</a>
@@ -366,6 +373,42 @@ async function preload() {
   await Promise.all(Array.from({ length: 6 }, async () => { while (queue.length) await load(queue.shift()); }));
   reveal();
 }
+
+const ringCv = document.getElementById("splash-ring");
+const ringCtx = ringCv.getContext("2d");
+const splashTxt = document.getElementById("splash-txt");
+
+function drawRing(t) {
+  const c = ringCtx, S = ringCv.width, R = S * .36, cx = S / 2, cy = S / 2, N = 48;
+  const rot = t * .0022, tilt = .45, ct = Math.cos(tilt), st = Math.sin(tilt), cr = Math.cos(rot), sr = Math.sin(rot);
+  const proj = (x, y, z) => {
+    const X = x * cr + z * sr, Z = -x * sr + z * cr;
+    const Y2 = y * ct - Z * st, Z2 = y * st + Z * ct, k = 3.2 / (3.2 + Z2);
+    return [cx + X * R * k, cy + Y2 * R * k, Z2];
+  };
+  const pts = [];
+  for (let i = 0; i < N; i++) {
+    const a = i / N * Math.PI * 2, b = (i + .5) / N * Math.PI * 2;
+    pts.push([proj(Math.cos(a), Math.sin(a), -.12), proj(Math.cos(a) * .8, Math.sin(a) * .8, -.12), proj(Math.cos(b) * .92, Math.sin(b) * .92, .1)]);
+  }
+  c.clearRect(0, 0, S, S);
+  c.lineWidth = 1.5;
+  for (let i = 0; i < N; i++) {
+    const [o, n, f] = pts[i], [o2, n2] = pts[(i + 1) % N];
+    c.strokeStyle = `rgba(169,212,236,${.25 + .6 * (1.4 - (o[2] + 1) * .5)})`;
+    c.beginPath(); c.moveTo(o[0], o[1]); c.lineTo(f[0], f[1]); c.lineTo(n[0], n[1]);
+    c.moveTo(o[0], o[1]); c.lineTo(o2[0], o2[1]); c.moveTo(n[0], n[1]); c.lineTo(n2[0], n2[1]); c.stroke();
+  }
+}
+
+function splashLoop(t) {
+  if (ready && splash.classList.contains("done")) return;
+  drawRing(reduceMotion ? 900 : t);
+  splashTxt.textContent = "Cargando" + ".".repeat(reduceMotion ? 3 : Math.floor(t / 400) % 4);
+  splashTxt.style.opacity = reduceMotion || Math.floor(t / 600) % 2 === 0 ? 1 : .55;
+  if (!reduceMotion) requestAnimationFrame(splashLoop);
+}
+requestAnimationFrame(splashLoop);
 
 function reveal() {
   if (ready) return;
