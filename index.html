@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="loading">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,6 +19,7 @@
   --line:rgba(255,255,255,.12);
   --ice:#a9d4ec;
   --ice-hover:#c6e5f6;
+  --ice-strong:#6cbbea;
   --on-ice:#04121b;
   --sans:"Schibsted Grotesk","Helvetica Neue",Arial,system-ui,sans-serif;
   --pad:clamp(20px,5vw,72px);
@@ -78,7 +79,16 @@ canvas{position:absolute;inset:0;width:100%;height:100%;transition:opacity .25s 
 .progress{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);width:120px;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
 .progress b{display:block;height:100%;width:100%;background:var(--ice);transform-origin:left;transform:scaleX(0)}
 
-.loader{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums;transition:opacity .4s}
+html.loading{overflow:hidden}
+.splash{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#000;transition:opacity .7s var(--ease),visibility 0s linear .7s}
+.splash.done{opacity:0;visibility:hidden}
+.splash-inner{display:flex;flex-direction:column;align-items:center;gap:28px}
+.wordmark{opacity:0;transition:opacity .5s var(--ease);font-size:clamp(64px,11vw,148px);font-weight:600;letter-spacing:-.05em;line-height:1;color:var(--ink)}
+.fonts-ready .wordmark{opacity:1}
+.wordmark .b{color:var(--ice-strong)}
+.wordmark .i{background:linear-gradient(to bottom,var(--ice-strong) 0,var(--ice-strong) var(--cut,32%),var(--ink) var(--cut,32%));-webkit-background-clip:text;background-clip:text;color:transparent}
+.splash-bar{width:96px;height:2px;border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden}
+.splash-bar b{display:block;height:100%;background:var(--ice-strong);transform-origin:left;transform:scaleX(0);transition:transform .3s var(--ease)}
 
 .price{font-size:32px;font-weight:500;letter-spacing:-.02em;line-height:1}
 
@@ -138,6 +148,7 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:16px;pa
   .outro{left:24px;right:24px;text-align:left;max-width:none}
 }
 @media (prefers-reduced-motion:reduce){
+  .splash{transition:none}
   .hint svg{animation:none}
   .gallery-main img{transition:opacity .3s}
   .thumbs button::after{display:none}
@@ -146,6 +157,13 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:16px;pa
 </style>
 </head>
 <body>
+
+<div class="splash" id="splash" role="status" aria-label="Cargando ommit">
+  <div class="splash-inner">
+    <div class="wordmark" aria-hidden="true">om<span class="b">m</span><span class="i">i</span>t</div>
+    <div class="splash-bar" aria-hidden="true"><b id="splash-bar"></b></div>
+  </div>
+</div>
 
 <a class="skip" href="#producto">Saltar al producto</a>
 
@@ -164,7 +182,6 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:16px;pa
   <div class="stage">
     <canvas id="cv" role="img" aria-label="Animación del Casio azul hielo desarmándose pieza por pieza: cristal, bisel, esfera, máquina de cuarzo y tapa"></canvas>
     <div class="shade" aria-hidden="true"></div>
-    <div class="loader" id="loader" aria-hidden="true">Cargando 0%</div>
 
     <div class="layer intro" data-in="-1" data-out="0.04">
       <h1>Míralo por dentro.</h1>
@@ -314,7 +331,9 @@ const scrolly = document.getElementById("despiece");
 const layers = [...document.querySelectorAll(".layer")];
 const outro = document.querySelector(".outro");
 const bar = document.getElementById("bar");
-const loader = document.getElementById("loader");
+const splash = document.getElementById("splash");
+const splashBar = document.getElementById("splash-bar");
+let ready = false;
 const nav = document.getElementById("nav");
 const imgs = new Array(CONFIG.frames);
 let loaded = 0, current = -1, target = 0, smooth = 0;
@@ -328,7 +347,7 @@ function load(i) {
     im.onload = () => {
       imgs[i] = im;
       loaded++;
-      loader.textContent = `Cargando ${Math.round(loaded / CONFIG.frames * 100)}%`;
+      splashBar.style.transform = `scaleX(${loaded / CONFIG.frames})`;
       if (Math.abs(i - target) < 3) { current = -1; wake(); }
       res();
     };
@@ -345,7 +364,19 @@ async function preload() {
   for (let step = 32; step >= 1; step >>= 1)
     for (let i = 0; i < CONFIG.frames; i += step) if (!seen.has(i)) { seen.add(i); queue.push(i); }
   await Promise.all(Array.from({ length: 6 }, async () => { while (queue.length) await load(queue.shift()); }));
-  loader.style.opacity = 0;
+  reveal();
+}
+
+function reveal() {
+  if (ready) return;
+  ready = true;
+  splashBar.style.transform = "scaleX(1)";
+  setTimeout(() => {
+    splash.classList.add("done");
+    document.documentElement.classList.remove("loading");
+    splash.removeAttribute("role");
+    if (lenis) lenis.start();
+  }, 250);
 }
 
 function nearest(i) {
@@ -468,6 +499,11 @@ document.querySelectorAll(".buy").forEach(a => { a.href = buyUrl; a.target = "_b
 if (lenis) lenis.on("scroll", update);
 addEventListener("scroll", update, { passive: true });
 addEventListener("resize", () => { resize(); update(); });
+if (lenis) lenis.stop();
+const fontsReady = () => document.documentElement.classList.add("fonts-ready");
+document.fonts.load('600 1em "Schibsted Grotesk"').then(fontsReady, fontsReady);
+setTimeout(fontsReady, 1500);
+setTimeout(reveal, 8000);
 update();
 preload();
 requestAnimationFrame(loop);
