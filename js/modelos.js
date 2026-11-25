@@ -5,11 +5,11 @@
   ];
 
   const MODELOS = [
-    { id: "azul-hielo", linea: "clasico", href: "index.html", nombre: "Azul hielo", color: "#a9d4ec", frames: "frames" },
-    { id: "azul", linea: "clasico", href: "azul.html", nombre: "Azul", color: "#3f63b8", frames: "frames-azul" },
-    { id: "verde", linea: "clasico", href: "verde.html", nombre: "Verde", color: "#2f6e47", frames: "frames-verde" },
-    { id: "azul-noche", linea: "clasico", href: "azul-noche.html", nombre: "Azul noche", color: "linear-gradient(135deg,#1c2858 56%,#c9a04f 56%)", frames: "frames-noche" },
-    { id: "gshock-lima", linea: "gshock", href: "gshock-lima.html", nombre: "Verde lima", color: "#b5d64a", frames: "frames-gshock-lima" }
+    { id: "azul-hielo", linea: "clasico", href: "index.html", nombre: "Azul hielo", color: "#a9d4ec", tinta: "#6cbbea", frames: "frames" },
+    { id: "azul", linea: "clasico", href: "azul.html", nombre: "Azul", color: "#3f63b8", tinta: "#4c75de", frames: "frames-azul" },
+    { id: "verde", linea: "clasico", href: "verde.html", nombre: "Verde", color: "#2f6e47", tinta: "#3f9a63", frames: "frames-verde" },
+    { id: "azul-noche", linea: "clasico", href: "azul-noche.html", nombre: "Azul noche", color: "linear-gradient(135deg,#1c2858 56%,#c9a04f 56%)", tinta: "#c9a04f", frames: "frames-noche" },
+    { id: "gshock-lima", linea: "gshock", href: "gshock-lima.html", nombre: "Verde lima", color: "#b5d64a", tinta: "#a5cc36", frames: "frames-gshock-lima" }
   ];
 
   const KEY = "ommit-dir";
@@ -109,7 +109,27 @@
     return box;
   }
 
+  function splashColores() {
+    const splash = document.getElementById("splash");
+    const marca = splash && splash.querySelector(".wordmark");
+    if (!marca) return;
+    const tintas = MODELOS.map((m, i) => MODELOS[(actual + i) % MODELOS.length].tinta).filter(Boolean);
+    let i = 0;
+    splash.style.setProperty("--splash-c", tintas[0]);
+    if (new URLSearchParams(location.search).has("splash")) {
+      root.classList.add("splash-demo");
+      setTimeout(() => root.classList.remove("splash-demo"), 6000);
+    }
+    if (reduce || tintas.length < 2) return;
+    const timer = setInterval(() => {
+      if (splash.classList.contains("done") && !root.classList.contains("splash-demo")) { clearInterval(timer); return; }
+      i = (i + 1) % tintas.length;
+      splash.style.setProperty("--splash-c", tintas[i]);
+    }, 650);
+  }
+
   function construir() {
+    splashColores();
     const slot = document.getElementById("modelos");
     if (slot) {
       slot.removeAttribute("role");

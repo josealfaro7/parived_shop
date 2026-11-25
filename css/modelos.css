@@ -1,5 +1,12 @@
 @view-transition{navigation:auto}
 
+@property --splash-c{syntax:"<color>";inherits:true;initial-value:#ffffff}
+div.splash{transition:opacity .7s var(--ease),visibility 0s linear .7s,--splash-c .5s ease}
+.splash .splash-bar b{background:var(--splash-c,var(--accent-strong))}
+.splash .wordmark .b{color:var(--splash-c,var(--accent-strong))}
+.splash .wordmark .i{background:linear-gradient(to bottom,var(--splash-c,var(--accent-strong)) 0,var(--splash-c,var(--accent-strong)) var(--cut,32%),var(--ink) var(--cut,32%));-webkit-background-clip:text;background-clip:text}
+html.splash-demo .splash.done{opacity:1;visibility:visible;transition:none}
+
 html{touch-action:pan-y pinch-zoom;overscroll-behavior-x:none}
 body{overscroll-behavior-x:none}
 
