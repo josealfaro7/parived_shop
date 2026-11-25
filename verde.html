@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es" class="loading" data-modelo="verde">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ommit · Casio Clásico Verde · $34.990</title>
+<meta name="description" content="Casio de acero con esfera verde, bisel estriado y cuarzo japonés. $34.990.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%233f9a63' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/schibsted.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/modelos.css">
+<script src="js/modelos.js"></script>
+<style>
+@font-face{font-family:"Schibsted Grotesk";src:url("fonts/schibsted.woff2") format("woff2");font-weight:400 900;font-display:swap}
+:root{
+  --bg:#000;
+  --surface:#0b0f0d;
+  --ink:#f2f5f3;
+  --ink-2:#b9c4bd;
+  --mute:#8a978f;
+  --line:rgba(255,255,255,.12);
+  --accent:#93cfa6;
+  --accent-hover:#b7e2c4;
+  --accent-strong:#3f9a63;
+  --on-accent:#04140b;
+  --sans:"Schibsted Grotesk","Helvetica Neue",Arial,system-ui,sans-serif;
+  --pad:clamp(20px,5vw,72px);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;scrollbar-color:#2a2f33 var(--bg)}
+body{overflow-x:hidden;font-size:16px;line-height:1.5}
+::selection{background:var(--accent);color:var(--on-accent)}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+h1,h2{text-wrap:balance}
+p{text-wrap:pretty}
+
+.skip{position:absolute;left:var(--pad);top:-60px;z-index:50;padding:12px 18px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-weight:600;transition:top .2s var(--ease)}
+.skip:focus{top:16px}
+
+.nav{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px var(--pad);transition:background-color .4s,border-color .4s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(0,0,0,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.logo{font-size:22px;font-weight:600;letter-spacing:-.04em;line-height:1}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:8px;font-size:14px;color:var(--ink-2)}
+.nav-links a{padding:12px 12px;border-radius:999px;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:600;padding:0 20px;border-radius:999px;background:var(--ink);color:#000;transition:background-color .2s}
+.nav-cta:hover{background:var(--accent-hover)}
+
+.scrolly{position:relative;height:460vh}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-stopped{overflow:clip}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+canvas{position:absolute;inset:0;width:100%;height:100%;transition:opacity .25s linear}
+.shade{position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%),
+  linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.55) 22%,transparent 45%),
+  linear-gradient(to bottom,rgba(0,0,0,.65) 0%,transparent 14%)}
+
+.layer{position:absolute;opacity:0;pointer-events:none}
+.intro{left:var(--pad);bottom:clamp(32px,10vh,104px);max-width:420px}
+.intro h1{font-size:clamp(44px,5.2vw,80px);font-weight:600;letter-spacing:-.04em;line-height:.95}
+.intro p{margin-top:18px;font-size:clamp(16px,1.4vw,19px);color:var(--ink-2);max-width:34ch}
+.hint{margin-top:32px;display:inline-flex;align-items:center;gap:12px;font-size:13px;color:var(--mute)}
+.hint svg{width:16px;height:16px;animation:nudge 2s var(--ease) infinite}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+
+.note{left:var(--pad);bottom:clamp(32px,10vh,104px);max-width:360px}
+.note h2{font-size:clamp(26px,2.6vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1.05}
+.note p{margin-top:12px;font-size:16px;line-height:1.55;color:var(--ink-2)}
+
+.outro{right:var(--pad);bottom:clamp(32px,10vh,104px);text-align:right;max-width:440px}
+.outro h2{font-size:clamp(36px,4.4vw,64px);font-weight:600;letter-spacing:-.04em;line-height:.98}
+.outro p{margin-top:12px;color:var(--ink-2);font-size:17px}
+.outro .price{margin-top:24px}
+.outro .btn{margin-top:20px}
+
+.progress{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);width:120px;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.progress b{display:block;height:100%;width:100%;background:var(--accent);transform-origin:left;transform:scaleX(0)}
+
+html.loading{overflow:hidden}
+.splash{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#000;transition:opacity .7s var(--ease),visibility 0s linear .7s}
+.splash.done{opacity:0;visibility:hidden}
+.splash::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+.splash-inner{display:flex;flex-direction:column;align-items:center;gap:28px;animation:float 3.6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.splash-load{position:absolute;right:clamp(24px,6vw,88px);bottom:clamp(28px,8vh,80px);display:flex;align-items:center;gap:16px;color:var(--ink-2);font-size:14px;letter-spacing:.02em}
+.splash-load span{min-width:5.2em;transition:opacity .2s}
+.splash-load canvas{position:static;inset:auto;width:72px;height:72px;flex:none;transition:none}
+.wordmark{opacity:0;transition:opacity .5s var(--ease);font-size:clamp(64px,11vw,148px);font-weight:600;letter-spacing:-.05em;line-height:1;color:var(--ink)}
+.fonts-ready .wordmark{opacity:1}
+.wordmark .b{color:var(--accent-strong)}
+.wordmark .i{background:linear-gradient(to bottom,var(--accent-strong) 0,var(--accent-strong) var(--cut,32%),var(--ink) var(--cut,32%));-webkit-background-clip:text;background-clip:text;color:transparent}
+.splash-bar{width:96px;height:2px;border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden}
+.splash-bar b{display:block;height:100%;background:var(--accent-strong);transform-origin:left;transform:scaleX(0);transition:transform .3s var(--ease)}
+
+.price{font-size:32px;font-weight:500;letter-spacing:-.02em;line-height:1}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;background:var(--accent);color:var(--on-accent);font:600 16px/1 var(--sans);letter-spacing:-.01em;border:0;cursor:pointer;transition:background-color .2s,transform .25s var(--ease)}
+.btn:hover{background:var(--accent-hover)}
+.btn:active{transform:scale(.97)}
+.btn svg{width:18px;height:18px;transition:transform .25s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+
+.block{padding:clamp(96px,12vw,168px) var(--pad)}
+.title{font-size:clamp(36px,5vw,64px);font-weight:600;letter-spacing:-.04em;line-height:1}
+
+.product{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(32px,6vw,96px);align-items:start;max-width:1280px;margin:0 auto}
+.gallery-main{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:var(--surface)}
+.gallery-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.03);transition:opacity .9s var(--ease),transform 4s var(--ease)}
+.gallery-main img.on{opacity:1;transform:none}
+.thumbs{margin-top:12px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.thumbs button{position:relative;aspect-ratio:1;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--surface);cursor:pointer;opacity:.6;transition:opacity .2s,border-color .2s}
+.thumbs button[aria-pressed="true"],.thumbs button:hover{opacity:1;border-color:var(--accent)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs button::after{content:"";position:absolute;left:8px;right:8px;bottom:6px;height:2px;border-radius:2px;background:var(--accent);transform:scaleX(0);transform-origin:left}
+.thumbs button.run::after{animation:fill var(--interval,4s) linear forwards}
+.gallery.paused .thumbs button.run::after{animation-play-state:paused}
+@keyframes fill{to{transform:scaleX(1)}}
+.info{position:sticky;top:112px}
+.info h2{font-size:clamp(34px,3.6vw,52px);font-weight:600;letter-spacing:-.035em;line-height:1}
+.info .price{margin-top:24px}
+.info .lead{margin-top:24px;font-size:17px;line-height:1.6;color:var(--ink-2);max-width:46ch}
+.info .btn{margin-top:32px;width:100%}
+.specs{margin-top:48px;border-top:1px solid var(--line)}
+.specs div{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-size:15px}
+.specs dt{color:var(--mute)}
+.specs dd{text-align:right}
+
+.life{max-width:1280px;margin:0 auto}
+.life-grid{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.life-grid figure{border-radius:20px;overflow:hidden;aspect-ratio:3/4;background:var(--surface)}
+.life-grid img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.life-grid figure:hover img{transform:scale(1.03)}
+
+.closing{text-align:center;border-top:1px solid var(--line)}
+.closing .title{max-width:16ch;margin:0 auto}
+.closing .price{margin-top:28px;color:var(--ink-2);font-size:24px}
+.closing .btn{margin-top:32px}
+
+footer{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:32px var(--pad);border-top:1px solid var(--line);font-size:14px;color:var(--mute)}
+
+@media (max-width:860px){
+  .nav-links{display:none}
+  .product{grid-template-columns:1fr}
+  .info{position:static}
+  .life-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .life-grid figure:last-child{display:none}
+  .intro{left:24px;right:24px;max-width:none;text-align:center}
+  .intro p{margin-left:auto;margin-right:auto}
+  .note{left:24px;right:24px;max-width:none;bottom:auto;top:92px}
+  .outro{left:24px;right:24px;text-align:left;max-width:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .splash{transition:none}
+  .splash-inner{animation:none}
+  .hint svg{animation:none}
+  .gallery-main img{transition:opacity .3s}
+  .thumbs button::after{display:none}
+  .btn,.btn svg,.life-grid img{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="splash" id="splash" role="status" aria-label="Cargando ommit">
+  <div class="splash-inner">
+    <div class="wordmark" aria-hidden="true">om<span class="b">m</span><span class="i">i</span>t</div>
+    <div class="splash-bar" aria-hidden="true"><b id="splash-bar"></b></div>
+  </div>
+  <div class="splash-load" aria-hidden="true"><span id="splash-txt">Cargando</span><canvas id="splash-ring" width="144" height="144"></canvas></div>
+</div>
+
+<a class="skip" href="#producto">Saltar al producto</a>
+
+<header class="nav" id="nav">
+  <a href="#despiece" class="logo" aria-label="ommit, inicio">ommit<span>.</span></a>
+  <div class="modelos" id="modelos" role="group" aria-label="Elige el color"></div>
+  <nav class="nav-links" aria-label="Secciones">
+    <a href="#despiece">El reloj</a>
+    <a href="#producto">Detalles</a>
+    <a href="#vida">En la muñeca</a>
+  </nav>
+  <a href="#producto" class="nav-cta" aria-label="Ver el reloj, $34.990">$34.990</a>
+</header>
+
+<main>
+<section class="scrolly" id="despiece" aria-label="Despiece del reloj">
+  <div class="stage">
+    <canvas id="cv" role="img" aria-label="Animación del Casio verde desarmándose pieza por pieza: cristal, bisel, esfera, máquina de cuarzo y tapa"></canvas>
+    <div class="shade" aria-hidden="true"></div>
+
+    <div class="layer intro" data-in="-1" data-out="0.04">
+      <h1>Míralo por dentro.</h1>
+      <p>Casio de acero con esfera verde, bisel estriado y cuarzo japonés.</p>
+      <div class="hint" aria-hidden="true">Desliza para abrirlo
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </div>
+    </div>
+
+    <div class="layer note" data-in="0.12" data-out="0.30">
+      <h2>Bisel estriado</h2>
+      <p>El bisel de acero con estrías finas enmarca la esfera, como en los clásicos de vestir.</p>
+    </div>
+
+    <div class="layer note" data-in="0.36" data-out="0.52">
+      <h2>Esfera verde</h2>
+      <p>Acabado rayos de sol que pasa de verde bosque a verde esmeralda según la luz. Fecha a las 3.</p>
+    </div>
+
+    <div class="layer note" data-in="0.58" data-out="0.71">
+      <h2>Cuarzo japonés</h2>
+      <p>Máquina de cuarzo a pila. Precisa, sin cuerda y sin ajustes diarios.</p>
+    </div>
+
+    <div class="layer note" data-in="0.76" data-out="0.87">
+      <h2>Acero inoxidable</h2>
+      <p>Caja y correa de acero. Resistente al agua 50 m: lluvia, salpicaduras y lavado de manos.</p>
+    </div>
+
+    <div class="layer outro" data-in="0.93" data-out="2">
+      <h2>Todo en su lugar.</h2>
+      <p>Casio Clásico Verde.</p>
+      <div class="price">$34.990</div>
+      <a href="#producto" class="btn">Ver el reloj
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+    <div class="progress" aria-hidden="true"><b id="bar"></b></div>
+  </div>
+</section>
+
+<div class="rest">
+
+<section class="block" id="producto" aria-labelledby="producto-titulo">
+  <div class="product">
+    <div class="gallery" id="gallery">
+      <div class="gallery-main" aria-live="polite">
+        <img class="on" src="img/verde/frente.webp" width="1132" height="1200" alt="Casio verde sostenido en la mano, de frente">
+        <img src="img/verde/mano-1.webp" width="771" height="1200" alt="Casio verde en la muñeca, con luz natural">
+        <img src="img/verde/mano-2.webp" width="1010" height="1200" alt="Casio verde en la mano, con luz suave">
+        <img src="img/verde/perfil.webp" width="1128" height="1200" alt="Perfil de la caja de acero y la correa">
+        <img src="img/verde/tapa.webp" width="1100" height="1200" alt="Tapa trasera y cierre de la correa">
+      </div>
+      <div class="thumbs" id="thumbs" role="group" aria-label="Fotos del reloj">
+        <button type="button" aria-pressed="true" aria-label="Foto 1: frente"><img src="img/verde/frente.webp" width="1132" height="1200" alt="" loading="lazy"></button>
+        <button type="button" aria-pressed="false" aria-label="Foto 2: en la muñeca"><img src="img/verde/mano-1.webp" width="771" height="1200" alt="" loading="lazy"></button>
+        <button type="button" aria-pressed="false" aria-label="Foto 3: en la mano"><img src="img/verde/mano-2.webp" width="1010" height="1200" alt="" loading="lazy"></button>
+        <button type="button" aria-pressed="false" aria-label="Foto 4: perfil"><img src="img/verde/perfil.webp" width="1128" height="1200" alt="" loading="lazy"></button>
+        <button type="button" aria-pressed="false" aria-label="Foto 5: tapa y cierre"><img src="img/verde/tapa.webp" width="1100" height="1200" alt="" loading="lazy"></button>
+      </div>
+    </div>
+    <div class="info">
+      <h2 id="producto-titulo">Casio Clásico Verde</h2>
+      <div class="price">$34.990</div>
+      <p class="lead">Un reloj de vestir de acero con esfera verde y bisel estriado. Sirve para la oficina y para el fin de semana.</p>
+      <a class="btn buy" href="#">Comprar
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <dl class="specs">
+        <div><dt>Marca</dt><dd>Casio</dd></div>
+        <div><dt>Máquina</dt><dd>Cuarzo · Japan Movt</dd></div>
+        <div><dt>Caja y correa</dt><dd>Acero inoxidable</dd></div>
+        <div><dt>Esfera</dt><dd>Verde, rayos de sol</dd></div>
+        <div><dt>Bisel</dt><dd>Acero estriado</dd></div>
+        <div><dt>Calendario</dt><dd>Fecha a las 3</dd></div>
+        <div><dt>Resistencia al agua</dt><dd>50 m</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="block life" id="vida" aria-labelledby="vida-titulo">
+  <h2 class="title" id="vida-titulo">Se ve distinto en cada luz.</h2>
+  <div class="life-grid">
+    <figure><img src="img/verde/muneca-1.webp" width="778" height="1200" alt="La esfera verde en la muñeca, con luz de tarde" loading="lazy"></figure>
+    <figure><img src="img/verde/muneca-2.webp" width="856" height="1200" alt="El reloj en la muñeca, con plantas de fondo" loading="lazy"></figure>
+    <figure><img src="img/verde/muneca-3.webp" width="1017" height="1200" alt="La esfera verde a la sombra, casi verde bosque" loading="lazy"></figure>
+  </div>
+</section>
+
+<section class="block closing" aria-labelledby="cierre-titulo">
+  <h2 class="title" id="cierre-titulo">Un clásico que no pasa de moda.</h2>
+  <div class="price">$34.990</div>
+  <a class="btn buy" href="#">Comprar ahora
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</section>
+</div>
+</main>
+<footer>
+  <span class="logo">ommit<span>.</span></span>
+  <span>© 2026 ommit</span>
+</footer>
+
+<script src="js/lenis.min.js"></script>
+<script>
+const CONFIG = {
+  frames: 192,
+  dir: matchMedia("(max-width: 860px)").matches ? "frames-verde-m" : "frames-verde",
+  whatsapp: "",
+  holdStart: 0.03,
+  holdEnd: 0.9
+};
+
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let gated = false, lastWheel = 0;
+const lenis = !reduceMotion && window.Lenis ? new Lenis({
+  lerp: 0.085,
+  wheelMultiplier: 1,
+  anchors: true,
+  virtualScroll(d) {
+    if (d.event.type !== "wheel") return true;
+    const now = performance.now();
+    const quiet = now - lastWheel > 220;
+    lastWheel = now;
+    if (gated && !quiet && d.deltaY > 0) { d.event.preventDefault(); return false; }
+    gated = false;
+    d.deltaY = Math.max(-120, Math.min(120, d.deltaY));
+    const end = scrolly.offsetTop + scrolly.offsetHeight - innerHeight;
+    const t = lenis.targetScroll;
+    if (d.deltaY > 0 && t < end - 1 && t + d.deltaY > end) {
+      d.event.preventDefault();
+      lenis.scrollTo(end);
+      gated = true;
+      return false;
+    }
+    return true;
+  }
+}) : null;
+
+const CUM = [0,0.0015,0.003,0.0046,0.0062,0.0078,0.0095,0.0112,0.013,0.0149,0.0168,0.0188,0.0208,0.0229,0.025,0.0271,0.0293,0.0315,0.0337,0.0359,0.0382,0.0405,0.0429,0.0454,0.0479,0.0505,0.0532,0.056,0.0589,0.062,0.0652,0.0685,0.072,0.0757,0.0795,0.0834,0.0875,0.0917,0.096,0.1003,0.1048,0.1092,0.1138,0.1184,0.1231,0.1278,0.1326,0.1375,0.1425,0.1476,0.1527,0.158,0.1633,0.1687,0.1741,0.1797,0.1853,0.191,0.1968,0.2026,0.2086,0.2146,0.2208,0.227,0.2334,0.2398,0.2463,0.253,0.2597,0.2665,0.2735,0.2805,0.2876,0.2948,0.3022,0.3097,0.3173,0.3251,0.3332,0.3415,0.35,0.3588,0.3678,0.3771,0.3865,0.3961,0.4057,0.4153,0.425,0.4346,0.4442,0.4538,0.4634,0.473,0.4825,0.4922,0.5018,0.5114,0.521,0.5306,0.5402,0.5498,0.5594,0.5689,0.5784,0.5879,0.5973,0.6067,0.616,0.6252,0.6344,0.6435,0.6524,0.6613,0.67,0.6786,0.6871,0.6954,0.7036,0.7116,0.7194,0.727,0.7345,0.7418,0.7489,0.7558,0.7626,0.7693,0.7758,0.7821,0.7883,0.7943,0.8,0.8056,0.8109,0.8159,0.8207,0.8253,0.8297,0.8339,0.8379,0.8419,0.8457,0.8495,0.8532,0.8569,0.8605,0.8641,0.8676,0.871,0.8744,0.8777,0.8809,0.8841,0.8872,0.8903,0.8932,0.8961,0.899,0.9017,0.9044,0.9071,0.9098,0.9126,0.9153,0.9181,0.921,0.924,0.9271,0.9303,0.9336,0.937,0.9404,0.9439,0.9474,0.9509,0.9544,0.9579,0.9613,0.9647,0.9681,0.9714,0.9746,0.9778,0.9808,0.9839,0.9868,0.9896,0.9923,0.995,0.9975,1];
+
+const cv = document.getElementById("cv");
+const ctx = cv.getContext("2d");
+const scrolly = document.getElementById("despiece");
+const layers = [...document.querySelectorAll(".layer")];
+const outro = document.querySelector(".outro");
+const bar = document.getElementById("bar");
+const splash = document.getElementById("splash");
+const splashBar = document.getElementById("splash-bar");
+let ready = false;
+const nav = document.getElementById("nav");
+const imgs = new Array(CONFIG.frames);
+let loaded = 0, current = -1, target = 0, smooth = 0;
+
+const src = i => `${CONFIG.dir}/${String(i + 1).padStart(3, "0")}.webp`;
+
+function load(i) {
+  return new Promise(res => {
+    const im = new Image();
+    im.decoding = "async";
+    im.onload = () => {
+      imgs[i] = im;
+      loaded++;
+      splashBar.style.transform = `scaleX(${loaded / CONFIG.frames})`;
+      if (Math.abs(i - target) < 3) { current = -1; wake(); }
+      res();
+    };
+    im.onerror = res;
+    im.src = src(i);
+  });
+}
+
+async function preload() {
+  await load(0);
+  resize();
+  const seen = new Set([0]);
+  const queue = [];
+  for (let step = 32; step >= 1; step >>= 1)
+    for (let i = 0; i < CONFIG.frames; i += step) if (!seen.has(i)) { seen.add(i); queue.push(i); }
+  await Promise.all(Array.from({ length: 6 }, async () => { while (queue.length) await load(queue.shift()); }));
+  reveal();
+}
+
+const ringCv = document.getElementById("splash-ring");
+const ringCtx = ringCv.getContext("2d");
+const splashTxt = document.getElementById("splash-txt");
+
+function drawRing(t) {
+  const c = ringCtx, S = ringCv.width, R = S * .36, cx = S / 2, cy = S / 2, N = 48;
+  const rot = t * .0022, tilt = .45, ct = Math.cos(tilt), st = Math.sin(tilt), cr = Math.cos(rot), sr = Math.sin(rot);
+  const proj = (x, y, z) => {
+    const X = x * cr + z * sr, Z = -x * sr + z * cr;
+    const Y2 = y * ct - Z * st, Z2 = y * st + Z * ct, k = 3.2 / (3.2 + Z2);
+    return [cx + X * R * k, cy + Y2 * R * k, Z2];
+  };
+  const pts = [];
+  for (let i = 0; i < N; i++) {
+    const a = i / N * Math.PI * 2, b = (i + .5) / N * Math.PI * 2;
+    pts.push([proj(Math.cos(a), Math.sin(a), -.12), proj(Math.cos(a) * .8, Math.sin(a) * .8, -.12), proj(Math.cos(b) * .92, Math.sin(b) * .92, .1)]);
+  }
+  c.clearRect(0, 0, S, S);
+  c.lineWidth = 1.5;
+  for (let i = 0; i < N; i++) {
+    const [o, n, f] = pts[i], [o2, n2] = pts[(i + 1) % N];
+    c.strokeStyle = `rgba(147,207,166,${.25 + .6 * (1.4 - (o[2] + 1) * .5)})`;
+    c.beginPath(); c.moveTo(o[0], o[1]); c.lineTo(f[0], f[1]); c.lineTo(n[0], n[1]);
+    c.moveTo(o[0], o[1]); c.lineTo(o2[0], o2[1]); c.moveTo(n[0], n[1]); c.lineTo(n2[0], n2[1]); c.stroke();
+  }
+}
+
+function splashLoop(t) {
+  if (ready && splash.classList.contains("done")) return;
+  drawRing(reduceMotion ? 900 : t);
+  splashTxt.textContent = "Cargando" + ".".repeat(reduceMotion ? 3 : Math.floor(t / 400) % 4);
+  splashTxt.style.opacity = reduceMotion || Math.floor(t / 600) % 2 === 0 ? 1 : .55;
+  if (!reduceMotion) requestAnimationFrame(splashLoop);
+}
+requestAnimationFrame(splashLoop);
+
+function reveal() {
+  if (ready) return;
+  ready = true;
+  splashBar.style.transform = "scaleX(1)";
+  setTimeout(() => {
+    splash.classList.add("done");
+    document.documentElement.classList.remove("loading");
+    splash.removeAttribute("role");
+    if (lenis) lenis.start();
+  }, 250);
+}
+
+function nearest(i) {
+  if (imgs[i]) return imgs[i];
+  for (let d = 1; d < CONFIG.frames; d++) {
+    if (imgs[i - d]) return imgs[i - d];
+    if (imgs[i + d]) return imgs[i + d];
+  }
+  return null;
+}
+
+function resize() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  cv.width = Math.round(innerWidth * dpr);
+  cv.height = Math.round(innerHeight * dpr);
+  current = -1;
+  draw(Math.round(smooth));
+}
+
+function draw(i) {
+  const im = nearest(i);
+  if (!im) return;
+  const W = cv.width, H = cv.height, iw = im.naturalWidth, ih = im.naturalHeight;
+  const s = W / H < 1.1 ? (W / iw) * 1.18 : Math.max(W / iw, H / ih);
+  const w = iw * s, h = ih * s;
+  ctx.fillStyle = "#000";
+  ctx.fillRect(0, 0, W, H);
+  ctx.drawImage(im, (W - w) / 2, (H - h) / 2, w, h);
+}
+
+function frameFor(t) {
+  let lo = 0, hi = CUM.length - 1;
+  while (lo < hi) { const m = (lo + hi + 1) >> 1; if (CUM[m] <= t) lo = m; else hi = m - 1; }
+  const span = (CUM[lo + 1] ?? 1) - CUM[lo];
+  return Math.min(CONFIG.frames - 1, lo + (span > 0 ? (t - CUM[lo]) / span : 0));
+}
+
+function progress() {
+  const r = scrolly.getBoundingClientRect();
+  return Math.min(1, Math.max(0, -r.top / (scrolly.offsetHeight - innerHeight)));
+}
+
+function fade(p, a, b) {
+  const e = 0.04;
+  if (p < a - e || p > b + e) return 0;
+  if (p < a) return (p - (a - e)) / e;
+  if (p > b) return 1 - (p - b) / e;
+  return 1;
+}
+
+function update() {
+  const p = progress();
+  const t = Math.min(1, Math.max(0, (p - CONFIG.holdStart) / (CONFIG.holdEnd - CONFIG.holdStart)));
+  target = frameFor(t);
+  bar.style.transform = `scaleX(${p})`;
+  for (const el of layers) {
+    const o = fade(p, +el.dataset.in, +el.dataset.out);
+    el.style.opacity = o;
+    el.style.transform = o < 1 ? `translateY(${(1 - o) * 16}px)` : "";
+    el.style.pointerEvents = o > 0.5 ? "auto" : "none";
+    if (el === outro) cv.style.opacity = 1 - o * 0.6;
+  }
+  nav.classList.toggle("solid", scrollY > scrolly.offsetHeight - innerHeight);
+}
+
+function render() {
+  smooth += (target - smooth) * (lenis ? 0.5 : 0.25);
+  if (Math.abs(target - smooth) < 0.02) smooth = target;
+  const f = Math.round(smooth);
+  if (f !== current) { current = f; draw(f); }
+}
+
+function loop(time) {
+  if (lenis) lenis.raf(time);
+  render();
+  requestAnimationFrame(loop);
+}
+
+function wake() { current = -1; }
+
+const gallery = document.getElementById("gallery");
+const slides = [...gallery.querySelectorAll(".gallery-main img")];
+const thumbBtns = [...gallery.querySelectorAll(".thumbs button")];
+const INTERVAL = 4000;
+let slide = 0, timer = null, visible = false, hovering = false;
+gallery.style.setProperty("--interval", `${INTERVAL}ms`);
+
+function show(i) {
+  slide = (i + slides.length) % slides.length;
+  slides.forEach((im, k) => im.classList.toggle("on", k === slide));
+  thumbBtns.forEach((b, k) => { b.setAttribute("aria-pressed", k === slide); b.classList.remove("run"); });
+}
+
+function schedule() {
+  clearTimeout(timer);
+  timer = null;
+  thumbBtns.forEach(b => b.classList.remove("run"));
+  if (reduceMotion || !visible || document.hidden) return;
+  const btn = thumbBtns[slide];
+  void btn.offsetWidth;
+  btn.classList.add("run");
+  if (!hovering) timer = setTimeout(() => { show(slide + 1); schedule(); }, INTERVAL);
+}
+
+function pause() { hovering = true; gallery.classList.add("paused"); clearTimeout(timer); timer = null; }
+function resume() { hovering = false; gallery.classList.remove("paused"); schedule(); }
+
+thumbBtns.forEach((b, k) => b.addEventListener("click", () => { show(k); schedule(); }));
+gallery.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") pause(); });
+gallery.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") resume(); });
+gallery.addEventListener("focusin", pause);
+gallery.addEventListener("focusout", e => { if (!gallery.contains(e.relatedTarget)) resume(); });
+document.addEventListener("visibilitychange", schedule);
+new IntersectionObserver(([e]) => { visible = e.isIntersecting; schedule(); }, { threshold: 0.4 }).observe(gallery);
+
+const msg = encodeURIComponent("Hola ommit, quiero comprar el Casio Clásico Verde ($34.990).");
+const buyUrl = `https://wa.me/${CONFIG.whatsapp}?text=${msg}`;
+document.querySelectorAll(".buy").forEach(a => { a.href = buyUrl; a.target = "_blank"; a.rel = "noopener"; });
+
+if (lenis) lenis.on("scroll", update);
+addEventListener("scroll", update, { passive: true });
+addEventListener("resize", () => { resize(); update(); });
+if (lenis) lenis.stop();
+const fontsReady = () => document.documentElement.classList.add("fonts-ready");
+document.fonts.load('600 1em "Schibsted Grotesk"').then(fontsReady, fontsReady);
+setTimeout(fontsReady, 1500);
+setTimeout(reveal, 8000);
+update();
+preload();
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
