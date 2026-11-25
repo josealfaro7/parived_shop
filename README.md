@@ -1,6 +1,6 @@
-# ommit
+# Time is yours
 
-Tienda de ommit: relojes Casio con despiece animado por scroll. Cada modelo es una página; se cambia entre ellos deslizando hacia el lado, con las flechas laterales o el teclado, y se agrupan en dos líneas: Clásico y G-Shock.
+Tienda Time is yours: relojes Casio con despiece animado por scroll. Cada modelo es una página; se cambia entre ellos deslizando hacia el lado, con las flechas laterales o el teclado, y se agrupan en dos líneas: Clásico y G-Shock.
 
 | Línea | Color | Página | Frames |
 |---|---|---|---|
@@ -13,6 +13,6 @@ Tienda de ommit: relojes Casio con despiece animado por scroll. Cada modelo es u
 - `js/modelos.js`: lista de líneas y modelos, selector de línea y colores, deslizamiento y transición entre páginas.
 - `css/modelos.css`: estilos del selector, flechas laterales y transición.
 - `img/`: fotos de galería y muñeca de cada modelo (`img/azul/`, `img/verde/`, …).
-- `fonts/`: Schibsted Grotesk (OFL).
+- `fonts/`: Schibsted Grotesk e Inter Tight (OFL).
 
 Para sumar un modelo: agregar sus frames y fotos, copiar una página de la misma línea con sus colores y textos, y añadir una entrada en `MODELOS` dentro de `js/modelos.js`.

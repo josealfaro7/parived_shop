@@ -3,7 +3,7 @@
 @property --splash-c{syntax:"<color>";inherits:true;initial-value:#ffffff}
 div.splash{transition:opacity .7s var(--ease),visibility 0s linear .7s,--splash-c .5s ease}
 .splash .splash-bar b{background:var(--splash-c,var(--accent-strong))}
-.splash .wordmark .b{color:var(--splash-c,var(--accent-strong))}
+.splash .wordmark .reloj{color:var(--splash-c,var(--accent-strong))}
 .splash .wordmark .i{background:linear-gradient(to bottom,var(--splash-c,var(--accent-strong)) 0,var(--splash-c,var(--accent-strong)) var(--cut,32%),var(--ink) var(--cut,32%));-webkit-background-clip:text;background-clip:text}
 html.splash-demo .splash.done{opacity:1;visibility:visible;transition:none}
 
@@ -56,16 +56,17 @@ html.llega body{animation:llega .5s cubic-bezier(.16,1,.3,1)}
 @keyframes llega{from{opacity:0}}
 
 @media (max-width:860px){
-  header.nav{align-items:flex-start}
-  .modelos{flex-direction:column;gap:2px}
+  header.nav{flex-wrap:wrap;align-items:center;row-gap:4px;padding-top:12px;padding-bottom:10px}
+  header.nav .logo{order:1;font-size:20px}
+  header.nav .nav-cta{order:2;min-height:40px}
+  header.nav .modelos{order:3;width:100%;justify-content:center;gap:8px}
   .lineas a{min-height:34px;padding:0 13px}
-  .modelos .swatch{height:32px;width:32px}
+  .modelos .swatch{height:36px;width:30px}
   .modelos .swatch::before{width:16px;height:16px}
-  header.nav .logo{margin-top:10px}
-  header.nav .nav-cta{min-height:40px;margin-top:0}
   .stage .note{top:132px}
   .flecha{height:42px;padding:0 12px;gap:8px}
   .flecha .punto{display:none}
+}
 }
 @media (prefers-reduced-motion:reduce){
   ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}

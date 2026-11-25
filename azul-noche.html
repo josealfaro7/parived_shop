@@ -3,15 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ommit · Casio Clásico Azul Noche · $34.990</title>
+<title>Time is yours · Casio Clásico Azul Noche · $34.990</title>
 <meta name="description" content="Casio de acero con esfera azul noche, detalles dorados, bisel estriado y cuarzo japonés. $34.990.">
 <meta name="theme-color" content="#000000">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%23c9a04f' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23c9a04f' stroke-width='3'/%3E%3Cpath d='M16 10.5V16l3.5 2' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preload" href="fonts/schibsted.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-tight-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/modelos.css">
 <script src="js/modelos.js"></script>
 <style>
 @font-face{font-family:"Schibsted Grotesk";src:url("fonts/schibsted.woff2") format("woff2");font-weight:400 900;font-display:swap}
+@font-face{font-family:"Inter Tight";src:url("fonts/inter-tight-600.woff2") format("woff2");font-weight:600;font-display:swap}
 :root{
   --bg:#000;
   --surface:#0a0c15;
@@ -43,7 +45,9 @@ p{text-wrap:pretty}
 .nav{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px var(--pad);transition:background-color .4s,border-color .4s;border-bottom:1px solid transparent}
 .nav.solid{background:rgba(0,0,0,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line)}
 .logo{font-size:22px;font-weight:600;letter-spacing:-.04em;line-height:1}
-.logo span{color:var(--accent)}
+.logo{white-space:nowrap}
+.logo .i{background:linear-gradient(to bottom,var(--accent) 0,var(--accent) var(--cut,32%),var(--ink) var(--cut,32%));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo .reloj{color:var(--accent)}
 .nav-links{display:flex;gap:8px;font-size:14px;color:var(--ink-2)}
 .nav-links a{padding:12px 12px;border-radius:999px;transition:color .2s}
 .nav-links a:hover{color:var(--ink)}
@@ -87,12 +91,22 @@ html.loading{overflow:hidden}
 .splash::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
 .splash-inner{display:flex;flex-direction:column;align-items:center;gap:28px;animation:float 3.6s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.splash-load{position:absolute;right:clamp(24px,6vw,88px);bottom:clamp(28px,8vh,80px);display:flex;align-items:center;gap:16px;color:var(--ink-2);font-size:14px;letter-spacing:.02em}
-.splash-load span{min-width:5.2em;transition:opacity .2s}
-.splash-load canvas{position:static;inset:auto;width:72px;height:72px;flex:none;transition:none}
-.wordmark{opacity:0;transition:opacity .5s var(--ease);font-size:clamp(64px,11vw,148px);font-weight:600;letter-spacing:-.05em;line-height:1;color:var(--ink)}
+.wordmark{opacity:0;transition:opacity .5s var(--ease);font-size:clamp(44px,8.4vw,128px);white-space:nowrap;font-weight:600;letter-spacing:-.05em;line-height:1;color:var(--ink)}
 .fonts-ready .wordmark{opacity:1}
-.wordmark .b{color:var(--accent-strong)}
+.wordmark,.logo{font-family:"Inter Tight","Schibsted Grotesk",system-ui,sans-serif;--cut:30%}
+.reloj{display:inline-block;width:.55em;height:.55em;vertical-align:-.01em;margin:0 .015em;color:var(--accent-strong)}
+.reloj svg{display:block;width:100%;height:100%;overflow:visible}
+.reloj .base{fill:none;stroke:currentColor;stroke-width:12}
+.reloj .arco{fill:none;stroke:currentColor;stroke-width:12;stroke-dasharray:251.33;stroke-dashoffset:0;stroke-linecap:round;transform:rotate(-90deg);transform-origin:50px 50px}
+.reloj line{stroke:var(--ink);stroke-width:9;stroke-linecap:round;transform-origin:50px 50px}
+.reloj .h{transform:rotate(-60deg)}
+.reloj .m{transform:rotate(60deg)}
+.splash .reloj .base{stroke:rgba(255,255,255,.22)}
+.splash .reloj .h{transform:rotate(0deg)}
+.splash .reloj .arco{animation:llena 2.4s cubic-bezier(.45,0,.2,1) infinite}
+.splash .reloj .m{animation:giro-m 2.4s cubic-bezier(.45,0,.2,1) infinite}
+@keyframes llena{from{stroke-dashoffset:251.33}to{stroke-dashoffset:0}}
+@keyframes giro-m{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .wordmark .i{background:linear-gradient(to bottom,var(--accent-strong) 0,var(--accent-strong) var(--cut,32%),var(--ink) var(--cut,32%));-webkit-background-clip:text;background-clip:text;color:transparent}
 .splash-bar{width:96px;height:2px;border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden}
 .splash-bar b{display:block;height:100%;background:var(--accent-strong);transform-origin:left;transform:scaleX(0);transition:transform .3s var(--ease)}
@@ -157,6 +171,7 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:16px;pa
 @media (prefers-reduced-motion:reduce){
   .splash{transition:none}
   .splash-inner{animation:none}
+  .splash .reloj line,.splash .reloj .arco{animation:none}
   .hint svg{animation:none}
   .gallery-main img{transition:opacity .3s}
   .thumbs button::after{display:none}
@@ -166,18 +181,17 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:16px;pa
 </head>
 <body>
 
-<div class="splash" id="splash" role="status" aria-label="Cargando ommit">
+<div class="splash" id="splash" role="status" aria-label="Cargando Time is yours">
   <div class="splash-inner">
-    <div class="wordmark" aria-hidden="true">om<span class="b">m</span><span class="i">i</span>t</div>
+    <div class="wordmark" aria-hidden="true">T<span class="i">i</span>me <span class="i">i</span>s y<span class="reloj"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="base" cx="50" cy="50" r="40"/><circle class="arco" cx="50" cy="50" r="40"/><line class="h" x1="50" y1="50" x2="50" y2="29"/><line class="m" x1="50" y1="50" x2="50" y2="19"/></svg></span>urs</div>
     <div class="splash-bar" aria-hidden="true"><b id="splash-bar"></b></div>
   </div>
-  <div class="splash-load" aria-hidden="true"><span id="splash-txt">Cargando</span><canvas id="splash-ring" width="144" height="144"></canvas></div>
 </div>
 
 <a class="skip" href="#producto">Saltar al producto</a>
 
 <header class="nav" id="nav">
-  <a href="#despiece" class="logo" aria-label="ommit, inicio">ommit<span>.</span></a>
+  <a href="#despiece" class="logo" aria-label="Time is yours, inicio">T<span class="i">i</span>me <span class="i">i</span>s y<span class="reloj"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="base" cx="50" cy="50" r="40"/><circle class="arco" cx="50" cy="50" r="40"/><line class="h" x1="50" y1="50" x2="50" y2="29"/><line class="m" x1="50" y1="50" x2="50" y2="19"/></svg></span>urs</a>
   <div class="modelos" id="modelos" role="group" aria-label="Elige el color"></div>
   <nav class="nav-links" aria-label="Secciones">
     <a href="#despiece">El reloj</a>
@@ -293,8 +307,8 @@ footer{display:flex;justify-content:space-between;align-items:center;gap:16px;pa
 </div>
 </main>
 <footer>
-  <span class="logo">ommit<span>.</span></span>
-  <span>© 2026 ommit</span>
+  <span class="logo" aria-label="Time is yours">T<span class="i">i</span>me <span class="i">i</span>s y<span class="reloj"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="base" cx="50" cy="50" r="40"/><circle class="arco" cx="50" cy="50" r="40"/><line class="h" x1="50" y1="50" x2="50" y2="29"/><line class="m" x1="50" y1="50" x2="50" y2="19"/></svg></span>urs</span>
+  <span>© 2026 Time is yours</span>
 </footer>
 
 <script src="js/lenis.min.js"></script>
@@ -377,41 +391,6 @@ async function preload() {
   reveal();
 }
 
-const ringCv = document.getElementById("splash-ring");
-const ringCtx = ringCv.getContext("2d");
-const splashTxt = document.getElementById("splash-txt");
-
-function drawRing(t) {
-  const c = ringCtx, S = ringCv.width, R = S * .36, cx = S / 2, cy = S / 2, N = 48;
-  const rot = t * .0022, tilt = .45, ct = Math.cos(tilt), st = Math.sin(tilt), cr = Math.cos(rot), sr = Math.sin(rot);
-  const proj = (x, y, z) => {
-    const X = x * cr + z * sr, Z = -x * sr + z * cr;
-    const Y2 = y * ct - Z * st, Z2 = y * st + Z * ct, k = 3.2 / (3.2 + Z2);
-    return [cx + X * R * k, cy + Y2 * R * k, Z2];
-  };
-  const pts = [];
-  for (let i = 0; i < N; i++) {
-    const a = i / N * Math.PI * 2, b = (i + .5) / N * Math.PI * 2;
-    pts.push([proj(Math.cos(a), Math.sin(a), -.12), proj(Math.cos(a) * .8, Math.sin(a) * .8, -.12), proj(Math.cos(b) * .92, Math.sin(b) * .92, .1)]);
-  }
-  c.clearRect(0, 0, S, S);
-  c.lineWidth = 1.5;
-  for (let i = 0; i < N; i++) {
-    const [o, n, f] = pts[i], [o2, n2] = pts[(i + 1) % N];
-    c.strokeStyle = `rgba(217,183,112,${.25 + .6 * (1.4 - (o[2] + 1) * .5)})`;
-    c.beginPath(); c.moveTo(o[0], o[1]); c.lineTo(f[0], f[1]); c.lineTo(n[0], n[1]);
-    c.moveTo(o[0], o[1]); c.lineTo(o2[0], o2[1]); c.moveTo(n[0], n[1]); c.lineTo(n2[0], n2[1]); c.stroke();
-  }
-}
-
-function splashLoop(t) {
-  if (ready && splash.classList.contains("done")) return;
-  drawRing(reduceMotion ? 900 : t);
-  splashTxt.textContent = "Cargando" + ".".repeat(reduceMotion ? 3 : Math.floor(t / 400) % 4);
-  splashTxt.style.opacity = reduceMotion || Math.floor(t / 600) % 2 === 0 ? 1 : .55;
-  if (!reduceMotion) requestAnimationFrame(splashLoop);
-}
-requestAnimationFrame(splashLoop);
 
 function reveal() {
   if (ready) return;
@@ -538,7 +517,7 @@ gallery.addEventListener("focusout", e => { if (!gallery.contains(e.relatedTarge
 document.addEventListener("visibilitychange", schedule);
 new IntersectionObserver(([e]) => { visible = e.isIntersecting; schedule(); }, { threshold: 0.4 }).observe(gallery);
 
-const msg = encodeURIComponent("Hola ommit, quiero comprar el Casio Clásico Azul Noche ($34.990).");
+const msg = encodeURIComponent("Hola Time is yours, quiero comprar el Casio Clásico Azul Noche ($34.990).");
 const buyUrl = `https://wa.me/${CONFIG.whatsapp}?text=${msg}`;
 document.querySelectorAll(".buy").forEach(a => { a.href = buyUrl; a.target = "_blank"; a.rel = "noopener"; });
 
@@ -547,7 +526,7 @@ addEventListener("scroll", update, { passive: true });
 addEventListener("resize", () => { resize(); update(); });
 if (lenis) lenis.stop();
 const fontsReady = () => document.documentElement.classList.add("fonts-ready");
-document.fonts.load('600 1em "Schibsted Grotesk"').then(fontsReady, fontsReady);
+Promise.all([document.fonts.load('600 1em "Schibsted Grotesk"'), document.fonts.load('600 1em "Inter Tight"')]).then(fontsReady, fontsReady);
 setTimeout(fontsReady, 1500);
 setTimeout(reveal, 8000);
 update();
